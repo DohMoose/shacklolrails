@@ -1,5 +1,8 @@
 .bundle
-db/*.sqlite3
 log/*.log
-tmp/
-.sass-cache/
+tmp/**/*
+**.orig
+tmp
+*~
+.DS_Store
+public/uploads
