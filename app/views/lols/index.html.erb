@@ -1,0 +1,47 @@
+<%= format_date current_date %>
+
+<% @lols.each do |lol| %>
+  <%  link = lol[0][0]
+  next
+  lol_type = lol[0][1]
+  lold_by = lol[1]
+  post_id = link.post_id
+%>
+    <li id="thread_<%= post_id %>">
+      <div class="votes <%= lol_type %>">
+        <a name="<%= post_id%>"></a>
+        <span class="count">
+          <%= permalink(post_id, lold_by.length) %>
+          </span> 
+          <span class="lol-button" id="lol_<%=post_id%>">
+            <%= self_lol(post_id, lol_type) %>
+        </span>
+      </div>
+
+      <div class="post">
+        <div class="postmeta">
+          <%= permalink(post_id, %{<img src="img/permalink.gif" alt="##{post_id}" width="16" height="16" />}) %>
+          <span class="post-author">By <a href= "/lols?authoredby=<%= link.user.shackname%>"><%= link.user.shackname%></a></span><span class= "post-date"><%= format_date(link.date)%></span>
+        </div>
+
+        <div class="postbody">
+          <%= link.cache %>
+        </div>
+
+        <div class="loldby">
+          <% lold_by.each do |loller| %>
+            <a href="/lols?loldby=<%=loller.user.shackname%>"><%=loller.user.shackname%></a>
+
+          <% end %>
+        </div>
+      </div>
+    </li>
+  
+<% end %>
+<%= prev_day = format_date(current_date - 1.day) %>
+<%= link_to "<< #{prev_day}", "?date=#{prev_day}" %> 
+<%= next_day = format_date(current_date + 1.day) %>
+<%= link_to "#{next_day} >>", "?date=#{next_day}" %> 
+</div>
+
+
