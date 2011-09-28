@@ -1,0 +1,85 @@
+
+body.black {
+	background-color: #000;
+	color: #fff;
+  div.nav ul#nav-tag {
+	background-color: #222;
+  }
+}
+body.white {
+  background-color: #fff;
+  color: #000;
+  div.post {
+      background-color: inherit;
+  }
+
+}
+
+h1 a { background: transparent url(img/lol-dumbo.png) 0 10px no-repeat; }
+
+div.post
+{
+	background-color: inherit;
+}
+
+a {
+	color: #fc0; 
+}
+div.infz span.count, 
+div.lolz span.count {
+	color: #000;
+}
+
+div.nav {
+	padding: 0.5em 0; 
+}
+
+
+div.postmeta {
+	color: #aaa;
+	border-bottom: 1px solid #666;
+}
+div.lolz span.count {
+	background: #ff9;
+	border: 1px solid #ff9;
+}
+div.lolz span.button {
+	border: 1px solid #666;
+}
+div.loldby {
+	border-top: 1px solid #666;
+}
+
+div#header div#lol-too,
+div#css_controls {
+	background-color: #222;
+	border-bottom: 1px solid #222;
+}
+
+div#header div#lol-too h3 {
+	color: #fc0;
+}
+
+
+
+div.tabs {
+	background: transparent url(img/black-tab-bottom.gif) 0  100% repeat-x; 
+}
+div.tabs ul li {
+	background: transparent url(img/black-tab-background.gif) 100% 0 no-repeat;
+	border-bottom: 1px solid #888;
+}
+div.tabs a {
+	background: transparent url(img/black-tab-background.gif) 0 0 no-repeat;
+}
+div.tabs ul li.selected  {
+	background: #000 url(img/black-tab-selected-background.gif) 100% 0 no-repeat;
+	border-bottom: 1px solid #000;
+}
+div.tabs ul li.selected a {
+	background: #000 url(img/black-tab-selected-background.gif) 0 0 no-repeat;
+}
+div.tabs ul li.not-tab {
+	background-image: none; 
+}
+

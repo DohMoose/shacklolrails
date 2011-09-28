@@ -1,6 +1,6 @@
 Lolscript::Application.routes.draw do
-  resources :lols do
-  end
+  resources :lols 
+  resources :analyses 
 
 
   # The priority is based upon order of creation:

@@ -1,0 +1,42 @@
+<% if current_date_scope %>
+  <%= prev_day = format_date(current_date - 1.day) %>
+  <%= link_to "<< #{prev_day}", "?date=#{prev_day}" %> 
+  <%= next_day = format_date(current_date + 1.day) %>
+  <%= link_to "#{next_day} >>", "?date=#{next_day}" %> 
+<% end %>
+
+<ul id="loll">
+<% @analyses.first(10).each do |lol| %>
+    <li id="thread_<%= lol.link.post_id %>">
+      <div class="votes <%= lol.lol_type.name %>z">
+        <a name="<%= lol.link.post_id%>"></a>
+        <span class="count">
+          <%= permalink(lol.link.post_id, lol.lold_by.length) %>
+          </span> 
+          <span class="lol-button" id="lol_<%=lol.link.post_id%>">
+            <%= self_lol(lol.link.post_id, lol.lol_type.name) %>
+        </span>
+      </div>
+
+      <div class="post">
+        <div class="postmeta">
+          <%= permalink(lol.link.post_id, %{<img src="img/permalink.gif" alt="##{lol.link.post_id}" width="16" height="16" />}) %>
+          <span class="post-author">By <a href= "/analyses?authoredby=<%= lol.link.user.shackname%>"><%= lol.link.user.shackname%></a></span><span class= "post-date"><%= format_datetime(lol.link.date)%></span>
+        </div>
+
+        <div class="postbody">
+          <%= lol.link.cache %>
+        </div>
+
+        <div class="loldby">
+          <% lol.lold_by.each do |loller| %>
+            <a href="/analyses?loldby=<%=loller%>"><%=loller%></a>
+
+          <% end %>
+        </div>
+      </div>
+    </li>
+<% end %>
+</ul>
+
+

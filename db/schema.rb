@@ -11,7 +11,17 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20110926112006) do
+ActiveRecord::Schema.define(:version => 20110927115023) do
+
+  create_table "analyses", :force => true do |t|
+    t.integer  "link_id"
+    t.integer  "last_lol_id"
+    t.integer  "lol_type_id"
+    t.integer  "total"
+    t.text     "lold_by"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
 
   create_table "links", :force => true do |t|
     t.integer  "post_id"

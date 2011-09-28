@@ -1,5 +1,6 @@
 class Lol < ActiveRecord::Base
   before_validation :transpose
+  after_save :update_analysis
 
   belongs_to :lol_type
   belongs_to :user
@@ -20,9 +21,18 @@ class Lol < ActiveRecord::Base
       where("links.date > ? and links.date <= ?", timezone_date, timezone_date+1.day)
   } 
 
+  def similar
+    Lol.where(link_id: self.link_id, lol_type_id: self.lol_type_id).joins(:user).includes(:user)
+  end
+
+
     
 
 private
+  def update_analysis
+    Analysis.for_single_lol(self)
+  end
+
   def transpose
     # we already have proper ids
     return if lol_type

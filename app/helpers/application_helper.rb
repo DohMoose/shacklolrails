@@ -3,6 +3,10 @@ module ApplicationHelper
     date.to_date.to_s :db
   end
 
+  def format_datetime(date)
+    date.to_datetime.in_time_zone.to_s :db
+  end
+
   def post_link(id)
     "http://www.shacknews.com/chatty?id=#{id}"
   end
