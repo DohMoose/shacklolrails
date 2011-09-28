@@ -17,7 +17,7 @@ class AnalysesController < InheritedResources::Base
   end
 
   def who
-    @whos = apply_scopes(Lol).group_by_shackname.order("shackname").count
+    @whos = apply_scopes(Lol).joins(:user).group_by_shackname.order("shackname").count
   end
 
   def user

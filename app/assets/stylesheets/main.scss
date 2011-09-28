@@ -394,7 +394,7 @@ div.tabs ul li {
 	float: left;
 	display: inline;
 	line-height: 2.5em;
-	background: transparent url(img/tab-background.gif) 100% 0 no-repeat;
+	background: transparent url(tab-background.gif) 100% 0 no-repeat;
 	border-bottom: 1px solid #ccc;
 }
 div.tabs ul li.strong {
@@ -406,7 +406,7 @@ div.tabs a {
 	display: block;
 	line-height: 2.5em;
 	padding: 0 0 0 12px;
-	background: transparent url(img/tab-background.gif) 0 0 no-repeat;
+	background: transparent url(tab-background.gif) 0 0 no-repeat;
 }
 div.tabs a:hover {
 	/* background-color: #ff0; */

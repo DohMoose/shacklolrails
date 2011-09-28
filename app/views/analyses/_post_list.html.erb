@@ -36,7 +36,7 @@
 
       <div class="post">
         <div class="postmeta">
-          <%= permalink(lol.link.post_id, %{<img src="img/permalink.gif" alt="##{lol.link.post_id}" width="16" height="16" />}) %>
+          <%= permalink(lol.link.post_id, %{<img src="/assets/permalink.gif" alt="##{lol.link.post_id}" width="16" height="16" />}) %>
           <span class="post-author">By <a href= "/analyses/user?authoredby=<%= lol.link.user.shackname%>"><%= lol.link.user.shackname%></a></span><span class= "post-date"><%= format_datetime(lol.link.date)%></span>
         </div>
 
