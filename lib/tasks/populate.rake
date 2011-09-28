@@ -7,7 +7,6 @@ namespace :db do
   end
   desc "grab a bunch of posts"
   task :populate => :environment do
-    ShackApi.cache_urls = true
     User.find_or_create_by_shackname('filthysock')
     lol_types = ['lol', 'wtf', 'unf']
     start_id = 26353521

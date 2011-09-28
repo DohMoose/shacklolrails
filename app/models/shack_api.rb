@@ -5,8 +5,6 @@ class ShackApi
   @@host = 'shackapi.stonedonkey.com'
 
   class << self 
-    attr_accessor :cache_urls
-    attr_accessor :url_cache
     def get_comment(id)
       url = "#{@@host}/thread/#{id}.json"
       content = get(url)
@@ -27,21 +25,11 @@ class ShackApi
 
     def get(url)
 
-      if cache_urls
-        url_cache ||= {}
-        if (url_cache[url])
-          puts "cache hit for #{url}"
-          return url_cache[url]
-        end
-      end
       url = "http://#{url}"
 
       res = Net::HTTP.get(URI.parse(url))
 
       parsed_result = JSON.parse(res, max_nesting: false)
-      if cache_urls
-        url_cache[url] = parsed_result
-      end
       parsed_result
     end
   end
