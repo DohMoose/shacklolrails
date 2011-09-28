@@ -21,8 +21,8 @@ class Link < ActiveRecord::Base
   def self.get(post_id)
     link = where(post_id: post_id).first
     unless link
-      original_post, comment = ShackApi.get_comment(post_id)
       begin
+      original_post, comment = ShackApi.get_comment(post_id)
       link = Link.create!(
           post_id: comment["id"], 
           original_post_id: original_post["id"],
