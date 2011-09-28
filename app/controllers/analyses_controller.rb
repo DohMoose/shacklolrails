@@ -5,6 +5,9 @@ class AnalysesController < InheritedResources::Base
 
   has_scope :date
   has_scope :authored_by, as: 'authoredby'
+  has_scope :lold_by, as: 'loldby'
+  has_scope :tag
+  has_scope :list_order, as: 'sort_by', default: 'lols'
 
 
 private

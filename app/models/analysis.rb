@@ -7,16 +7,34 @@ class Analysis < ActiveRecord::Base
     lambda { |day|
       timezone_date = DateTime.parse(day).in_time_zone
       joined.
-      where("links.date > ? and links.date <= ?", timezone_date, timezone_date+1.day).
-      order("total DESC").order("last_lol_id DESC")
+      where("links.date > ? and links.date <= ?", timezone_date, timezone_date+1.day)
   } 
 
   scope :authored_by, 
     lambda { |shackname|
       joined.
-      where("links.user_id = ?", User.get(shackname)).
-      order("total DESC").order("last_lol_id DESC")
+      where("links.user_id = ?", User.get(shackname))
   } 
+
+  scope :lold_by,
+    lambda { |shackname|
+      joined.
+      joins("inner join lols on lols.link_id = analyses.link_id and lols.lol_type_id = analyses.lol_type_id").
+      where("lols.user_id = ?", User.get(shackname))
+  }
+
+  scope :tag,
+    lambda { |tagname|
+      joined.
+      where(lol_type_id: LolType.get(tagname))
+  }
+
+  scope :list_order,
+    lambda { |type|
+      order_statement = (type == 'lols') ? "total desc" : "links.date desc"
+      order(order_statement).order("last_lol_id desc")
+  }
+
 
   scope :joined,  joins(:link).
       includes(:link).

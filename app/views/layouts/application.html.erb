@@ -3,13 +3,38 @@
 <head>
   <title>Lolscript</title>
   <%= stylesheet_link_tag    "application" %>
-  <%= javascript_include_tag "application" %>
   <%= csrf_meta_tags %>
 </head>
 <body>
+<div id="header-nav">
+	<div class="nav">
+		 
+		<ul id="nav-tag">
+			<li class="lol">[<a data-filter="tag" data-filter-value="lol" href="#">lol</a>]</li>
+			<li class="inf">[<a data-filter="tag" data-filter-value="inf" href="#">inf</a>]</li>
+			<li class="tag">[<a data-filter="tag" data-filter-value="tag" href="#">tag</a>]</li>
+			<li class="unf">[<a data-filter="tag" data-filter-value="unf" href="#">unf</a>]</li>
+			<li class="wtf">[<a data-filter="tag" data-filter-value="wtf" href="#">wtf</a>]</li>
+			<li class="all">[<a data-filter="tag" data-filter-value="" href="#">*</a>]</li>
+			<li class="right"><a href="http://www.shacknews.com/chatty/">GB2LC »</a></li>
+		</ul>
+		 
+		
+		<ul id="nav-page">
+			<li><a href="/analyses">Home</a></li>
+			<li><a href="funniest.php?&amp;show=2011-09-26&amp;tag=inf">Masters of [inf]</a></li>
+			<li><a href="who.php?&amp;show=2011-09-26&amp;tag=inf">Who is [inf]ing</a></li>
+			<li><a href="interest.php?&amp;show=2011-09-26&amp;tag=inf">[inf]'d Metrics</a></li>
+			<li><a href="museum-of-lols.php?&amp;show=2011-09-26&amp;tag=inf">MUSEUM OF [inf]s</a></li>
+			<li class="right"><form method="GET" action="search.php?&amp;show=2011-09-26&amp;tag=inf"><input type="text" name="search" id="search" value=""><!-- <input type="hidden" name="tag" value="inf" /> --><input type="submit" value="Search"></form></li>
+		</ul>
+	</div>
+</div>
+  
   <div id="content">
     <%= yield %>
   </div>
 
+  <%= javascript_include_tag "application" %>
 </body>
 </html>

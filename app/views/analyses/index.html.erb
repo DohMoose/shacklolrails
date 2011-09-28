@@ -1,9 +1,26 @@
-<% if current_date_scope %>
-  <%= prev_day = format_date(current_date - 1.day) %>
-  <%= link_to "<< #{prev_day}", "?date=#{prev_day}" %> 
-  <%= next_day = format_date(current_date + 1.day) %>
-  <%= link_to "#{next_day} >>", "?date=#{next_day}" %> 
-<% end %>
+
+
+<div class="nav">
+<ul>
+  <li>
+  <% if current_date_scope %>
+    <%= prev_day = format_date(current_date - 1.day) %>
+    <%= link_to "<< #{prev_day}", "#", "data-filter" => 'date', "data-filter-value" => prev_day %> 
+    <%= next_day = format_date(current_date + 1.day) %>
+    <%= link_to "#{next_day} >>", "#", "data-filter" => 'date', "data-filter-value" => next_day %>
+  <% end %>
+    </li>
+    <li class="center">
+      <label for="sort-by">Sort by </label>
+      <select id="change_sort">
+        <option value="date">Date</option>
+        <option value="lols" selected="">[lol]s</option>
+      </select>
+    </li>
+</ul>
+</div>
+  
+ 
 
 <ul id="loll">
 <% @analyses.first(10).each do |lol| %>
@@ -25,7 +42,7 @@
         </div>
 
         <div class="postbody">
-          <%= lol.link.cache %>
+          <%=raw  lol.link.cache %>
         </div>
 
         <div class="loldby">
