@@ -30,6 +30,7 @@ class ShackApi
       if cache_urls
         url_cache ||= {}
         if (url_cache[url])
+          puts "cache hit for #{url}"
           return url_cache[url]
         end
       end
