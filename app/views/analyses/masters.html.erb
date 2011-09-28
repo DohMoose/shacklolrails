@@ -7,7 +7,7 @@
       
     <ol class="user-list"> 
       <% @most.each do |shackname, count| %>
-        <li><a href="/analyses?tag=<%=current_tag%>&authoredby=<%=shackname%>"><%= shackname%></a>
+        <li><a href="/analyses/user?tag=<%=current_tag%>&authoredby=<%=shackname%>"><%= shackname%></a>
         <br>
         <%= count %> [<%=current_tag_name%>]s
         </li>
@@ -21,7 +21,7 @@
 
     <ol class="user-list">
       <% @most_posts.each do |shackname, count| %>
-        <li><a href="/analyses?tag=<%=current_tag%>&authoredby=<%=shackname%>"><%= shackname%></a>
+        <li><a href="/analyses/user?tag=<%=current_tag%>&authoredby=<%=shackname%>"><%= shackname%></a>
         <br>
         <%= count %> [<%=current_tag_name%>]s
         </li>

@@ -1,0 +1,13 @@
+<h2><a href="http://www.shacknews.com/ja.zz?person=<%=current_shacker%>" title="<%= current_shacker.capitalize%>'s Shacknews Profile"><%= current_shacker.capitalize%></a><%= user_action %></h2>
+
+
+<div class="tabs">
+	<ul>
+    <li><a href="/analyses/user?tag=<%=current_tag%>&authoredby=<%=current_shacker%>">Authored By...</a></li>
+    <li><a href="/analyses/user?tag=<%=current_tag%>&loldby=<%=current_shacker%>">[<%= current_tag_name%>]'d By...</a></li>
+    <li><a href="/analyses/follow?tag=<%=current_tag%>&fantrain=<%=current_shacker%>">Fan Club</a></li>
+    <li><a href="/analyses/follow?tag=<%=current_tag%>&fanof=<%=current_shacker%>">Is A Fan of...</a></li>
+    <li><a href="/analyses/stats?tag=<%=current_tag%>&user=<%=current_shacker%>">Stats</a></li>
+</div>
+
+

@@ -26,8 +26,21 @@ class Lol < ActiveRecord::Base
       where(lol_type_id: LolType.get(tagname))
   }
 
+  scope :fan_train,
+    lambda { |shackname| 
+      joins(:user).
+      joins(:link).
+      where("links.user_id" => User.get(shackname))
+  }
+    
+  scope :fan_of,
+    lambda { |shackname| 
+      joins(:link => :user).
+      where("lols.user_id" => User.get(shackname))
+  }
+
   scope :group_by_shackname,
-    joins(:user).group("shackname")
+    group("shackname")
 
   scope :most_lold,
     joins(:link => :user).group("shackname").order("count(*) desc")

@@ -1,0 +1,7 @@
+  <ul id="user-list">
+    <% @whos.each do |shackname, count| %>
+      <li><a href="/analyses/user?tag=<%=current_tag%>&authoredby=<%=shackname%>"><%= shackname%></a> (<%=count%>)
+    <% end %>
+
+  </ul>
+

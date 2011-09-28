@@ -20,7 +20,7 @@ module ApplicationHelper
   end
 
   def current_shacker
-    "filthysock"
+    params[:user] || params[:authoredby] || params[:loldby] || params[:fantrain] || params[:fanof]
   end
 
   def current_tag_name
@@ -37,5 +37,9 @@ module ApplicationHelper
     else
       params["tag"] 
     end
+  end
+
+  def show_current_tag
+    "[#{current_tag_name}]"
   end
 end

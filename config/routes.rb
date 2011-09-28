@@ -4,6 +4,9 @@ Lolscript::Application.routes.draw do
     collection do
       get 'masters'
       get 'who'
+      get 'user'
+      get 'follow'
+      get 'stats'
     end
   end
 

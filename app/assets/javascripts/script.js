@@ -1,5 +1,6 @@
 $("#change_sort").val($.query.get("sort_by"))
 $("#change_sort").change(function(){
+  
   window.location.search = $.query.set("sort_by", $(this).val());
 });
 
