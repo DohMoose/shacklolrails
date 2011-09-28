@@ -22,12 +22,21 @@ class Link < ActiveRecord::Base
     link = where(post_id: post_id).first
     unless link
       original_post, comment = ShackApi.get_comment(post_id)
+      begin
       link = Link.create!(
           post_id: comment["id"], 
           original_post_id: original_post["id"],
           cache: comment["body"], 
           date: comment["date"],
           user: User.get(comment["author"]))
+      rescue 
+      link = Link.create!(
+          post_id: post_id, 
+          original_post_id: original_post["id"],
+          cache: 'nuke', 
+          date: original_post["date"],
+          user: User.get("nuked"))
+      end
     end
     link
   end
