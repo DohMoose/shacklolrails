@@ -5,7 +5,6 @@ gem 'rails', '3.1.0'
 # Bundle edge Rails instead:
 # gem 'rails',     :git => 'git://github.com/rails/rails.git'
 
-gem 'sqlite3'
 
 gem 'has_scope'
 gem 'inherited_resources'
@@ -28,9 +27,11 @@ gem 'jquery-rails'
 # gem 'capistrano'
 
 # To use debugger
-group :development do
+group :development, :test do
   gem 'ruby-debug19', :require => 'ruby-debug'
+  gem 'sqlite3'
 end
+
 
 group :production do 
   gem 'pg'
