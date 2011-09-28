@@ -16,7 +16,7 @@ class Link < ActiveRecord::Base
   }
 
   scope :most_lold_posts,
-    joins(:user).group("shackname").order("count(*) desc").limit(25)
+    joins(:user).group("shackname").order("count(*) desc")
 
   def self.get(post_id)
     link = where(post_id: post_id).first

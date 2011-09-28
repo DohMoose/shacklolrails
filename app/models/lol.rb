@@ -30,7 +30,7 @@ class Lol < ActiveRecord::Base
     joins(:user).group("shackname")
 
   scope :most_lold,
-    group_by_shackname.order("count(*) desc").limit(25)
+    joins(:link => :user).group("shackname").order("count(*) desc")
 
   def similar
     Lol.where(link_id: self.link_id, lol_type_id: self.lol_type_id).joins(:user).includes(:user)

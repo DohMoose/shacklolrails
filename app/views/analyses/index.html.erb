@@ -22,8 +22,9 @@
   
  
 
+<%= paginate @analyses %>
 <ul id="loll">
-<% @analyses.limit(10).each do |lol| %>
+<% @analyses.each do |lol| %>
     <li id="thread_<%= lol.link.post_id %>">
       <div class="votes <%= lol.lol_type.name %>z">
         <a name="<%= lol.link.post_id%>"></a>
@@ -54,6 +55,7 @@
       </div>
     </li>
 <% end %>
+<%= paginate @analyses %>
 </ul>
 
 

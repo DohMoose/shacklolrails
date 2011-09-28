@@ -23,9 +23,8 @@
 		<ul id="nav-page">
 			<li><a href="/analyses">Home</a></li>
       <li><a href="/analyses/masters?tag=<%=current_tag%>">Masters of [<%=current_tag_name%>]</a></li>
-      <li><a href="/analyses/who?tag=<%=current_tag%>">Who is [<%current_tag_name%>]ing</a></li>
-			<li><a href="interest.php?&amp;show=2011-09-26&amp;tag=inf">[inf]'d Metrics</a></li>
-			<li><a href="museum-of-lols.php?&amp;show=2011-09-26&amp;tag=inf">MUSEUM OF [inf]s</a></li>
+      <li><a href="/analyses/who?tag=<%=current_tag%>">Who is [<%=current_tag_name%>]ing</a></li>
+      <li><a href="/analyses?sort_by=lols&amp;tag=<%=current_tag%>">MUSEUM OF [<%= current_tag_name%>]s</a></li>
 			<li class="right"><form method="GET" action="search.php?&amp;show=2011-09-26&amp;tag=inf"><input type="text" name="search" id="search" value=""><!-- <input type="hidden" name="tag" value="inf" /> --><input type="submit" value="Search"></form></li>
 		</ul>
 	</div>
