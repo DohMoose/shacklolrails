@@ -22,4 +22,20 @@ module ApplicationHelper
   def current_shacker
     "filthysock"
   end
+
+  def current_tag_name
+    if params["tag"] == "*" or params["tag"].blank?
+      "lol"
+    else
+      params["tag"] 
+    end
+  end
+
+  def current_tag
+    if params["tag"] == "*" 
+      ""
+    else
+      params["tag"] 
+    end
+  end
 end

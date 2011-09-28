@@ -13,8 +13,8 @@
     <li class="center">
       <label for="sort-by">Sort by </label>
       <select id="change_sort">
-        <option value="date">Date</option>
         <option value="lols" selected="">[lol]s</option>
+        <option value="date">Date</option>
       </select>
     </li>
 </ul>
@@ -23,7 +23,7 @@
  
 
 <ul id="loll">
-<% @analyses.first(10).each do |lol| %>
+<% @analyses.limit(10).each do |lol| %>
     <li id="thread_<%= lol.link.post_id %>">
       <div class="votes <%= lol.lol_type.name %>z">
         <a name="<%= lol.link.post_id%>"></a>

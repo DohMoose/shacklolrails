@@ -32,11 +32,13 @@ class Analysis < ActiveRecord::Base
   scope :list_order,
     lambda { |type|
       order_statement = (type == 'lols') ? "total desc" : "links.date desc"
+      joined.
       order(order_statement).order("last_lol_id desc")
   }
 
 
-  scope :joined,  joins(:link).
+  scope :joined,  
+      joins(:link).
       includes(:link).
       joins(:lol_type).
       includes(:lol_type)

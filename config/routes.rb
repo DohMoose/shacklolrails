@@ -1,6 +1,11 @@
 Lolscript::Application.routes.draw do
   resources :lols 
-  resources :analyses 
+  resources :analyses do
+    collection do
+      get 'masters'
+      get 'who'
+    end
+  end
 
 
   # The priority is based upon order of creation:

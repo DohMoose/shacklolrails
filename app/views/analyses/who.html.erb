@@ -1,0 +1,12 @@
+<div id="content">
+  <h2>Who's [<%= current_tag_name.upcase%>]ing?</h2>
+  <p>These guys are using the [<%= current_tag_name%>] button</p>
+  <ul id="user-list">
+    <% @whos.each do |shackname, count| %>
+      <li><a href="/analyses?tag=<%=current_tag%>&authoredby=<%=shackname%>"><%= shackname%></a> (<%=count%>)
+    <% end %>
+
+  </ul>
+
+
+</div>

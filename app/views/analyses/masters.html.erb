@@ -1,0 +1,32 @@
+<div id="content">
+  <h2>Most [<%= current_tag_name.upcase%>'d] Motherfuckers</h2>
+
+  <div class="col">
+    <h3>Most <%= current_tag_name.upcase%>'d</h3>
+    <p>SUM of all [<%= current_tag_name%>]s</p>
+      
+    <ol class="user-list"> 
+      <% @most.each do |shackname, count| %>
+        <li><a href="/analyses?tag=<%=current_tag%>&authoredby=<%=shackname%>"><%= shackname%></a>
+        <br>
+        <%= count %> [<%=current_tag_name%>]s
+        </li>
+     <% end %>
+    </ol>
+  </div>
+
+  <div class="col">
+    <h3>Most <%=current_tag_name.upcase%>'d Posts</h3>
+    <p>COUNT of posts that have earned at least one [<%=current_tag_name%>].</p>
+
+    <ol class="user-list">
+      <% @most_posts.each do |shackname, count| %>
+        <li><a href="/analyses?tag=<%=current_tag%>&authoredby=<%=shackname%>"><%= shackname%></a>
+        <br>
+        <%= count %> [<%=current_tag_name%>]s
+        </li>
+      <% end %>
+    </ol>
+  </div>
+</div>
+

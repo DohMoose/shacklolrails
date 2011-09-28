@@ -21,6 +21,17 @@ class Lol < ActiveRecord::Base
       where("links.date > ? and links.date <= ?", timezone_date, timezone_date+1.day)
   } 
 
+ scope :tag,
+    lambda { |tagname|
+      where(lol_type_id: LolType.get(tagname))
+  }
+
+  scope :group_by_shackname,
+    joins(:user).group("shackname")
+
+  scope :most_lold,
+    group_by_shackname.order("count(*) desc").limit(25)
+
   def similar
     Lol.where(link_id: self.link_id, lol_type_id: self.lol_type_id).joins(:user).includes(:user)
   end
