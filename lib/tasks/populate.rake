@@ -9,8 +9,8 @@ namespace :db do
   task :populate => :environment do
     User.find_or_create_by_shackname('filthysock')
     lol_types = ['lol', 'wtf', 'unf']
-    start_id = 26353521
-    size = 50000
+    start_id = 26791804 
+    size = 1000
     start_id.upto(start_id + size) do |post_id|
       lol = Lol.new(
         tag: lol_types.sample,
