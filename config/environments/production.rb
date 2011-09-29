@@ -41,10 +41,8 @@ Lolscript::Application.configure do
   # config.cache_store = :mem_cache_store
   config.cache_store = :dalli_store
 
-
-  if ENV['MEMCACHE_SERVERS']
-    config.middleware.use Rack::Cache, :metastore => "memcached://#{ENV['MEMCACHE_SERVERS']}", :entitystore => "memcached://#{ENV['MEMCACHE_SERVERS']}" 
-  end
+  memcache_servers = ENV['MEMCACHE_SERVERS'] || 'localhost'
+  config.middleware.use Rack::Cache, :metastore => "memcached://#{memcache_servers}", :entitystore => "memcached://#{memcache_servers}" 
   
 
   # Enable serving of images, stylesheets, and JavaScripts from an asset server
