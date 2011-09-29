@@ -38,10 +38,10 @@ class Analysis < ActiveRecord::Base
 
   scope :chatty_id,
     lambda { |chatty_id|
-      original_post_id = Link.where(post_id: chatty_id).first.original_post_id
+      original_post_id = Link.get(chatty_id).original_post_id
       joined.
       where("links.original_post_id = ?", original_post_id).
-      group("post_id", "lol_type_id")
+      group("original_post_id", "post_id", "lol_type_id")
   }
 
   scope :article_id,
@@ -54,7 +54,7 @@ class Analysis < ActiveRecord::Base
 
       joined.
       where(where_clause).
-      group("post_id", "lol_type_id")
+      group("original_post_id","post_id",  "lol_type_id")
     }
 
   scope :joined,  
@@ -66,7 +66,17 @@ class Analysis < ActiveRecord::Base
 
 
   def self.format_lol_counts(lol_counts)
-    lol_counts.inject({}){|h,v| h[v[0][0]] ||= {} and h[v[0][0]].merge!( {LolType.find(v[0][1]).name => v[1]}) and h}
+    lol_counts.inject({}) do |h,v| 
+      original_post_id = v[0][0]
+      post_id = v[0][1]
+      lol_type = LolType.find(v[0][2]).name
+
+      h[original_post_id] ||= {} 
+      h[original_post_id][post_id] ||= {}
+      h[original_post_id][post_id][lol_type] = v[1];
+
+      h
+    end
   end
 
   def self.for_single_lol(lol)
