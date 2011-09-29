@@ -26,6 +26,8 @@ gem 'unicorn'
 # Deploy with Capistrano
 # gem 'capistrano'
 
+gem 'dalli'
+
 # To use debugger
 group :development, :test do
   gem 'ruby-debug19', :require => 'ruby-debug'

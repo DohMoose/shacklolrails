@@ -2,6 +2,8 @@ class AnalysesController < InheritedResources::Base
   respond_to :html
   actions :index, :user
   before_filter :ensure_scope
+  caches_action [:index, :user, :masters, :who, :follow, :stats], :expires_in => 1.minute.from_now, :cache_path => Proc.new {|c| c.request.url }
+  caches_action :index, :cache_path => Proc.new {|c| c.request.url }
 
   has_scope :date, only: :index
   has_scope :authored_by, as: 'authoredby', only: [:index, :user]

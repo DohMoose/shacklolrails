@@ -43,6 +43,7 @@ GEM
       execjs
     coffee-script-source (1.1.2)
     columnize (0.3.4)
+    dalli (1.1.2)
     erubis (2.7.0)
     execjs (1.2.9)
       multi_json (~> 1.0)
@@ -139,6 +140,7 @@ PLATFORMS
 
 DEPENDENCIES
   coffee-rails (~> 3.1.0)
+  dalli
   has_scope
   inherited_resources
   jquery-rails
