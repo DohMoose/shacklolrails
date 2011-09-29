@@ -28,7 +28,7 @@ class Link < ActiveRecord::Base
             post_id: post_id, 
             original_post_id: 0,
             cache: "$!.message", 
-            date: Datetime.now,
+            date: DateTime.now,
             user: User.get("exception"))
         return link
       end
