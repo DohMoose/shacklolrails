@@ -27,7 +27,7 @@ class Link < ActiveRecord::Base
         link = Link.create!(
             post_id: post_id, 
             original_post_id: 0,
-            cache: "$!.message", 
+            cache: $!.message 
             date: DateTime.now,
             user: User.get("exception"))
         return link
