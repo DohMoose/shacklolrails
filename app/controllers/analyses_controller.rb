@@ -2,9 +2,7 @@ class AnalysesController < InheritedResources::Base
   respond_to :html
   actions :index, :user
   before_filter :ensure_scope
-  [:index, :master, :user, :who, :follow, :stats].each do |action|
-    caches_action action, :expires_in => 1.minute.from_now, :cache_path => Proc.new {|c| c.request.url }
-  end
+  before_filter :cache_output
 
   has_scope :date, only: :index
   has_scope :authored_by, as: 'authoredby', only: [:index, :user]
@@ -39,6 +37,9 @@ class AnalysesController < InheritedResources::Base
   end
 
 private
+  def cache_output
+    response.headers['Cache-Control'] = 'public, max-age=60'
+  end
 
   def collection
     @analyses ||= end_of_association_chain.page(params[:page])
