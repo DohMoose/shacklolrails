@@ -1,5 +1,10 @@
 Lolscript::Application.routes.draw do
-  resources :lols 
+  resources :lols  do
+    collection do
+      get 'count'
+    end
+  end
+
   resources :analyses do
     collection do
       get 'masters'

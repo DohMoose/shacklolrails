@@ -28,4 +28,19 @@ namespace :db do
 
     end
   end
+
+  task :update_article_id => :environment do
+    links = Link.where(article_id: nil).where("post_id > 0")
+    count = links.count
+    puts "#{count} links"
+    links.all.each_with_index do |link, index|
+       puts "#{link.post_id}:#{number_to_percentage( (index / count.to_f) * 100 )}"
+
+       original_post, comment, article_id = ShackApi.get_comment(link.post_id)
+       link.article_id = article_id
+       link.save!
+    end
+
+
+  end
 end

@@ -36,6 +36,26 @@ class Analysis < ActiveRecord::Base
       order(order_statement).order("last_lol_id desc")
   }
 
+  scope :chatty_id,
+    lambda { |chatty_id|
+      original_post_id = Link.where(post_id: chatty_id).first.original_post_id
+      joined.
+      where("links.original_post_id = ?", original_post_id).
+      group("post_id", "lol_type_id")
+  }
+
+  scope :article_id,
+    lambda { |article_id| 
+      if (article_id.to_i == Link::LATEST_CHATTY_ARTICLE_ID)
+        where_clause = ["links.date > ?", (DateTime.now.in_time_zone - 18.hours)]
+      else
+        where_clause = {"links.article_id" => article_id}
+      end
+
+      joined.
+      where(where_clause).
+      group("post_id", "lol_type_id")
+    }
 
   scope :joined,  
       joins(:link).
@@ -44,6 +64,10 @@ class Analysis < ActiveRecord::Base
       includes(:lol_type)
   
 
+
+  def self.format_lol_counts(lol_counts)
+    lol_counts.inject({}){|h,v| h[v[0][0]] ||= {} and h[v[0][0]].merge!( {LolType.find(v[0][1]).name => v[1]}) and h}
+  end
 
   def self.for_single_lol(lol)
     similar = lol.similar.to_a

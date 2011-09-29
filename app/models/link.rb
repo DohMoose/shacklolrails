@@ -3,6 +3,8 @@ class Link < ActiveRecord::Base
   has_one :analysis
   belongs_to :user
 
+  LATEST_CHATTY_ARTICLE_ID = 17
+
   scope :date, 
     lambda { |day|
       timezone_date = DateTime.parse(day).in_time_zone
@@ -22,10 +24,11 @@ class Link < ActiveRecord::Base
     link = where(post_id: post_id).first
     unless link
       begin
-        original_post, comment = ShackApi.get_comment(post_id)
+        original_post, comment, article_id = ShackApi.get_comment(post_id)
       rescue
         link = Link.create!(
             post_id: post_id, 
+            article_id: 0,
             original_post_id: 0,
             cache: $!.message,
             date: DateTime.now,
@@ -35,7 +38,8 @@ class Link < ActiveRecord::Base
 
       begin
         link = Link.create!(
-            post_id: comment["id"], 
+            post_id: post_id, 
+            article_id: article_id,
             original_post_id: original_post["id"],
             cache: comment["body"], 
             date: comment["date"],
@@ -43,6 +47,7 @@ class Link < ActiveRecord::Base
       rescue 
         link = Link.create!(
             post_id: post_id, 
+            article_id: article_id,
             original_post_id: original_post["id"],
             cache: 'nuke', 
             date: original_post["date"],

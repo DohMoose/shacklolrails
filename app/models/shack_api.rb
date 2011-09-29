@@ -11,7 +11,7 @@ class ShackApi
       
       original_post = content['comments'][0]
       comment = search_replies(id.to_s, original_post)
-      return original_post, comment 
+      return original_post, comment, content['story_id']
     end
 
     def search_replies(id, content)
