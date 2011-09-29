@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20110927115023) do
+ActiveRecord::Schema.define(:version => 20110929045706) do
 
   create_table "analyses", :force => true do |t|
     t.integer  "link_id"
@@ -31,6 +31,7 @@ ActiveRecord::Schema.define(:version => 20110927115023) do
     t.text     "cache"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.integer  "article_id"
   end
 
   create_table "lol_types", :force => true do |t|

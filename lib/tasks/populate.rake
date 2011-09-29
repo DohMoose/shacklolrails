@@ -9,16 +9,17 @@ namespace :db do
   task :populate => :environment do
     User.find_or_create_by_shackname('filthysock')
     lol_types = ['lol', 'wtf', 'unf']
-    start_id = 26791804 
+    start_id = 26792037 
     size = 1000
-    start_id.upto(start_id + size) do |post_id|
+    size.times do |count|
+      post_id = start_id - count
       lol = Lol.new(
         tag: lol_types.sample,
         who: random_user.shackname,
         what: post_id
       )
 
-      puts "#{post_id}:#{number_to_percentage( ((post_id-start_id) / size.to_f) * 100 )}"
+      puts "#{post_id}:#{number_to_percentage(  (count / size.to_f) * 100 )}"
       
       begin
         lol.save

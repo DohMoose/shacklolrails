@@ -16,6 +16,10 @@ class LolsController < InheritedResources::Base
   end
 
 private
+  def cache_output
+    response.headers['Cache-Control'] = 'public, max-age=60'
+  end
+
   def ensure_scope
     if request.query_string.blank? 
       params[:article_id] = 17 

@@ -12,6 +12,7 @@ class AnalysesController < InheritedResources::Base
 
   has_scope :fan_train, as: 'fantrain', only: :follow
   has_scope :fan_of, as: 'fanof', only: :follow 
+
   def masters
     @most = apply_scopes(Lol).most_lold.limit(25).count
     @most_posts = apply_scopes(Link).most_lold_posts.limit(25).count

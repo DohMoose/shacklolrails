@@ -2,9 +2,10 @@
 <ul>
   <li>
   <% if current_date_scope %>
-    <%= prev_day = format_date(current_date - 1.day) %>
+    <% prev_day = format_date(current_date - 1.day) %>
     <%= link_to "<< #{prev_day}", "#", "data-filter" => 'date', "data-filter-value" => prev_day %> 
-    <%= next_day = format_date(current_date + 1.day) %>
+    <%= format_date(current-date) %>
+    <% next_day = format_date(current_date + 1.day) %>
     <%= link_to "#{next_day} >>", "#", "data-filter" => 'date', "data-filter-value" => next_day %>
   <% end %>
     </li>
