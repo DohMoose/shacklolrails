@@ -14,7 +14,7 @@ $(document).ready(function(){
   if (actual_shacker == null){
     if ($.query.get("user")){
       actual_shacker = $.query.get("user");
-      $.cookie("actual_shacker", actual_shacker);
+      $.cookie("actual_shacker", actual_shacker, {expires: 7, path: '/'});
     }
   }
   if (actual_shacker){
