@@ -2,6 +2,9 @@ class LolsController < InheritedResources::Base
   respond_to :json
   actions :create
   before_filter :ensure_scope
+  before_filter :cache_output, only: :count
+  
+
 
   has_scope :article_id
   has_scope :chatty_id
