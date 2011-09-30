@@ -6,11 +6,15 @@ namespace :db do
     
   end
   desc "grab a bunch of posts"
-  task :populate => :environment do
+  task :populate,[ :posts, :last_id]  => :environment do |t, args|
+     args.with_defaults(:posts => 1000, :last_id => 267963661)
+
+
+
     User.find_or_create_by_shackname('filthysock')
     lol_types = ['lol', 'wtf', 'unf']
-    start_id = 26792037 
-    size = 1000
+    start_id = args[:last_id].to_i
+    size = args[:posts].to_i
     size.times do |count|
       post_id = start_id - count
       lol = Lol.new(
