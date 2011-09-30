@@ -48,7 +48,7 @@ private
 
   def ensure_scope
     if request.query_string.blank? 
-      params[:date] = DateTime.now.in_time_zone.to_s
+      params[:date] = DateTime.now.in_time_zone.to_date.to_s
     end
   end
 
