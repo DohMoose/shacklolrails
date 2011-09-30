@@ -10,6 +10,10 @@ class Lol < ActiveRecord::Base
   attr_accessor :who #shacker
   attr_accessor :what #post_id
   attr_accessor :tag #lol_type
+  attr_accessor :moderation #set on link
+
+
+  validates :lol_type_id,  uniqueness: {scope: [:link_id, :user_id], message: "you already did this"}
 
   scope :date, 
     lambda { |day|
@@ -50,8 +54,6 @@ class Lol < ActiveRecord::Base
   end
 
 
-    
-
 private
   def update_analysis
     Analysis.for_single_lol(self)
@@ -64,7 +66,7 @@ private
     # we don't have the info to transpose
     return if who.blank?
 
-    self.link = Link.get(what)
+    self.link = Link.get(what, moderation)
     self.user = User.get(who)
     self.lol_type =  LolType.get(tag) 
 

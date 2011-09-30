@@ -23,7 +23,11 @@ class AnalysesController < InheritedResources::Base
   end
 
   def user
-    
+  end
+  
+  def index
+    cookies[:actual_shacker] =  params[:user]
+    index!
   end
 
   def follow

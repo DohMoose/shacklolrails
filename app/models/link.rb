@@ -20,9 +20,13 @@ class Link < ActiveRecord::Base
   scope :most_lold_posts,
     joins(:user).group("shackname").order("count(*) desc")
 
-  def self.get(post_id)
+  def self.get(post_id, moderation=nil)
     link = where(post_id: post_id).first
-    unless link
+
+    if link
+      link.moderation = moderation
+      link.save
+    else
       begin
         original_post, comment, article_id = ShackApi.get_comment(post_id)
       rescue
@@ -30,9 +34,9 @@ class Link < ActiveRecord::Base
             post_id: post_id, 
             article_id: 0,
             original_post_id: 0,
-            cache: $!.message,
-            date: DateTime.now,
-            user: User.get("exception"))
+            cache: 'nuked',
+            date: 10.years.ago,
+            user: User.get("duke nuked")
         return link
       end
 
@@ -49,9 +53,9 @@ class Link < ActiveRecord::Base
             post_id: post_id, 
             article_id: article_id,
             original_post_id: original_post["id"],
-            cache: 'nuke', 
+            cache: 'nuked', 
             date: original_post["date"],
-            user: User.get("nuked"))
+            user: User.get("duke nuked"))
       end
     end
     link

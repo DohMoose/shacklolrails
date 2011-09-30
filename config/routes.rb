@@ -1,9 +1,14 @@
 Lolscript::Application.routes.draw do
+  match 'lols/create' => 'lols#create', :via => :get
+  match 'lols' => 'analyses#index'
+
   resources :lols  do
     collection do
       get 'count'
     end
   end
+  
+
 
   resources :analyses do
     collection do

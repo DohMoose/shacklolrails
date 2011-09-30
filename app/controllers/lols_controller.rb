@@ -8,11 +8,18 @@ class LolsController < InheritedResources::Base
 
   # latestchatty is article 17
   def count
-    lols = Analysis.format_lol_counts(apply_scopes(Analysis).count)
+    lols = Analysis.format_lol_counts(apply_scopes(Analysis).sum(:total))
     respond_to do |format|
       format.json { render :json => lols}
     end
-    
+  end
+
+  def create
+    params[:lol][:ip] = request.ip
+    create! { |success, failure|
+      success.any { render(text: 'ok') }
+      failure.any { render(text: @lol.errors.messages.values.join(","))}
+    }
   end
 
 private

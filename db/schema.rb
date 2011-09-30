@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20110929045706) do
+ActiveRecord::Schema.define(:version => 20110930033001) do
 
   create_table "analyses", :force => true do |t|
     t.integer  "link_id"
@@ -32,6 +32,7 @@ ActiveRecord::Schema.define(:version => 20110929045706) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.integer  "article_id"
+    t.string   "moderation"
   end
 
   create_table "lol_types", :force => true do |t|
@@ -46,6 +47,8 @@ ActiveRecord::Schema.define(:version => 20110929045706) do
     t.integer  "lol_type_id"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.string   "version"
+    t.string   "ip"
   end
 
   create_table "users", :force => true do |t|

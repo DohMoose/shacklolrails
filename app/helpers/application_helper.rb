@@ -19,6 +19,10 @@ module ApplicationHelper
     %{[<a data-remote="true" href= "/lols/lol?who=#{current_shacker}&amp;what=#{post_id}&amp;tag=#{tag}&amp;version=-1" id="#{tag}#{post_id}" class="c1" name="#{tag}#{post_id}">#{tag}</a>]}.html_safe
   end
 
+  def actual_shacker
+    cookies[:actual_shacker]
+  end
+
   def current_shacker
     params[:user] || params[:authoredby] || params[:loldby] || params[:fantrain] || params[:fanof]
   end
