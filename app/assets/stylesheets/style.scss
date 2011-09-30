@@ -5,6 +5,16 @@ body.black {
   div.nav ul#nav-tag {
 	background-color: #222;
   }
+  
+  div#header div#lol-too,
+  div#css_controls {
+    background-color: #222;
+    border-bottom: 1px solid #222;
+  }
+
+  div#header div#lol-too h3 {
+    color: #fc0;
+  }
 }
 body.white {
   background-color: #fff;
@@ -50,15 +60,6 @@ div.loldby {
 	border-top: 1px solid #666;
 }
 
-div#header div#lol-too,
-div#css_controls {
-	background-color: #222;
-	border-bottom: 1px solid #222;
-}
-
-div#header div#lol-too h3 {
-	color: #fc0;
-}
 
 
 

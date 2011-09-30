@@ -36,7 +36,7 @@ class Link < ActiveRecord::Base
             original_post_id: 0,
             cache: 'nuked',
             date: 10.years.ago,
-            user: User.get("duke nuked")
+            user: User.get("duke nuked"))
         return link
       end
 

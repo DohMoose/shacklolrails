@@ -3,30 +3,52 @@
 <head>
   <title>Lolscript</title>
   <%= stylesheet_link_tag    "application" %>
+  <%= javascript_include_tag "application" %>
   <%= csrf_meta_tags %>
 </head>
 <body>
+<div id="header">
+  <h1><a href="/" title="Shack [lol]">* L O L ' D *</a></h1>
+  <div id="header-right">
+    <div id="lol-too">
+      <h3>How To [lol]</h3>
+      <ol>
+        <li><a href="http://www.getfirefox.com/">Get Firefox</a></li>
+        <li><a href="https://addons.mozilla.org/firefox/748/">Get Greasemonkey</a></li>
+        <li><a href="http://lmnopc.com/greasemonkey/shack2007/shack-lol.user.js">Get the Shack[lol] Greasemonkey script</a></li>
+      </ol>
+      <p><a href="http://shackwiki.com/wiki/Customization#Google_Chrome_Extensions" target="_blank"><img src="/assets/chrome-icon.png" width="13" height="13"> Google Chrome users can [lol] too!</a></p> 
+    </div>
+    <div id="css_controls">
+      <ul>
+        <li>Style Changer:</li>
+        <li id="light"><a href="#" onclick="setActiveStyleSheet('Light', true); return false;">light</a></li>
+        <li id="dark"><a href="#" onclick="setActiveStyleSheet('Dark', true); return false;">dark</a></li>
+      </ul>
+    </div>
+  </div>
+</div>
 <div id="header-nav">
-	<div class="nav">
-		 
-		<ul id="nav-tag">
-			<li class="lol">[<a data-filter="tag" data-filter-value="lol" href="#">lol</a>]</li>
-			<li class="inf">[<a data-filter="tag" data-filter-value="inf" href="#">inf</a>]</li>
-			<li class="tag">[<a data-filter="tag" data-filter-value="tag" href="#">tag</a>]</li>
-			<li class="unf">[<a data-filter="tag" data-filter-value="unf" href="#">unf</a>]</li>
-			<li class="wtf">[<a data-filter="tag" data-filter-value="wtf" href="#">wtf</a>]</li>
-			<li class="all">[<a data-filter="tag" data-filter-value="" href="#">*</a>]</li>
-			<li class="right"><a href="http://www.shacknews.com/chatty/">GB2LC »</a></li>
-		</ul>
-		 
-		
-		<ul id="nav-page">
-			<li><a href="/analyses">Home</a></li>
-      <li><a href="/analyses/masters?tag=<%=current_tag%>">Masters of [<%=current_tag_name%>]</a></li>
-      <li><a href="/analyses/who?tag=<%=current_tag%>">Who is [<%=current_tag_name%>]ing</a></li>
-      <li><a href="/analyses?sort_by=lols&amp;tag=<%=current_tag%>">MUSEUM OF [<%= current_tag_name%>]s</a></li>
-		</ul>
-	</div>
+<div class="nav">
+   
+  <ul id="nav-tag">
+    <li class="lol">[<a data-filter="tag" data-filter-value="lol" href="#">lol</a>]</li>
+    <li class="inf">[<a data-filter="tag" data-filter-value="inf" href="#">inf</a>]</li>
+    <li class="tag">[<a data-filter="tag" data-filter-value="tag" href="#">tag</a>]</li>
+    <li class="unf">[<a data-filter="tag" data-filter-value="unf" href="#">unf</a>]</li>
+    <li class="wtf">[<a data-filter="tag" data-filter-value="wtf" href="#">wtf</a>]</li>
+    <li class="all">[<a data-filter="tag" data-filter-value="" href="#">*</a>]</li>
+    <li class="right"><a href="http://www.shacknews.com/chatty/">GB2LC »</a></li>
+  </ul>
+   
+  
+  <ul id="nav-page">
+    <li><a href="/analyses">Home</a></li>
+    <li><a href="/analyses/masters?tag=<%=current_tag%>">Masters of [<%=current_tag_name%>]</a></li>
+    <li><a href="/analyses/who?tag=<%=current_tag%>">Who is [<%=current_tag_name%>]ing</a></li>
+    <li><a href="/analyses?sort_by=lols&amp;tag=<%=current_tag%>">MUSEUM OF [<%= current_tag_name%>]s</a></li>
+  </ul>
+</div>
 
   
 </div>
@@ -35,6 +57,14 @@
     <%= yield %>
   </div>
 
-  <%= javascript_include_tag "application" %>
+  <div id="your_lols" style="display:none">
+    <h3>##shackname##</h3>
+    <ul>
+      <li><a href="/analyses/user?authoredby=##shackname##">Shit you wrote</a></li>
+      <li><a href="/analyses/user?loldby=##shackname##">Shit you lol'd</a></li>
+      <li><a href="/analyses/user?fanclub=##shackname##">Your Fan Train</a></li>
+    </ul>
+  </div>
+  
 </body>
 </html>

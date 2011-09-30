@@ -95,8 +95,8 @@ h1 {
 h1 a {
 	text-decoration: none;
 	color: #f00;
-	background: transparent url(img/dumbo.png) 50% 50% no-repeat;
-	/* background: transparent url(img/fluffy-lol256.png) 50% 50% no-repeat;  */
+	background: transparent url(dumbo.png) 50% 50% no-repeat;
+	/* background: transparent url(fluffy-lol256.png) 50% 50% no-repeat;  */
 	display: block;
 	height: 180px;
 	width: 520px;
@@ -104,7 +104,7 @@ h1 a {
 
 	/*
 	width: 400px;
-	background-image: url(img/lol-fuckwit.gif);
+	background-image: url(lol-fuckwit.gif);
 	*/
 
 }
@@ -377,7 +377,7 @@ div.tabs {
 	float: left;
 	width: 100%;
 	margin: 0 0 20px 0;
-	background: transparent url(img/tab-bottom.gif) 0  100% repeat-x;
+	background: transparent url(tab-bottom.gif) 0  100% repeat-x;
 }
 div.tabs ul {
 	margin: 0;
@@ -412,11 +412,11 @@ div.tabs a:hover {
 	/* background-color: #ff0; */
 }
 div.tabs ul li.selected  {
-	background: #fff url(img/tab-selected-background.gif) 100% 0 no-repeat;
+	background: #fff url(tab-selected-background.gif) 100% 0 no-repeat;
 	border-bottom: 1px solid #fff;
 }
 div.tabs ul li.selected a {
-	background: #fff url(img/tab-selected-background.gif) 0 0 no-repeat;
+	background: #fff url(tab-selected-background.gif) 0 0 no-repeat;
 }
 div.tabs ul li.not-tab {
 	background-image: none;
@@ -497,13 +497,13 @@ ol#fanclub li {
 pre { line-height: 1em; }
 
 div.fpmod_nws .postmeta { 
-	background-image: url(img/fpmod_nws.png);
+	background-image: url(fpmod_nws.png);
 	background-repeat: no-repeat; 
 	background-position: 100% 50%; 
 }
 
 div.fpmod_informative .postmeta { 
-	background-image: url(img/fpmod_interesting.png);
+	background-image: url(fpmod_interesting.png);
 	background-repeat: no-repeat; 
 	background-position: 100% 50%;
 }

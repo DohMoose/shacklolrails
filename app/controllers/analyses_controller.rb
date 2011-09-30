@@ -25,11 +25,6 @@ class AnalysesController < InheritedResources::Base
   def user
   end
   
-  def index
-    cookies[:actual_shacker] =  params[:user]
-    index!
-  end
-
   def follow
     @whos = apply_scopes(Lol).group_by_shackname.order("count(*) desc").count
   end
