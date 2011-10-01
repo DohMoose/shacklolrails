@@ -41,7 +41,7 @@ class Analysis < ActiveRecord::Base
       original_post_id = Link.get(chatty_id).original_post_id
       joined.
       where("links.original_post_id = ?", original_post_id).
-      group("original_post_id", "post_id", "lol_type_id")
+      sum_group
   }
 
   scope :article_id,
@@ -54,8 +54,12 @@ class Analysis < ActiveRecord::Base
 
       joined.
       where(where_clause).
-      group("original_post_id","post_id",  "lol_type_id")
+      sum_group
     }
+
+  scope :sum_group,
+      group("original_post_id","post_id",  "lol_type_id").
+      order("original_post_id", "post_id", "lol_type_id")
 
   scope :joined,  
       joins(:link).
