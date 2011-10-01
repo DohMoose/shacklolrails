@@ -22,6 +22,7 @@ end
 
 gem 'jquery-rails'
 
+gem 'pg'
 # Use unicorn as the web server
 
 
@@ -34,16 +35,16 @@ gem 'dalli'
 group :development, :test do
   gem 'thin'
   gem 'ruby-debug19', :require => 'ruby-debug'
-  gem 'sqlite3'
 end
 
 
 group :production do 
   gem 'unicorn'
-  gem 'pg'
 end
 
 group :test do
   # Pretty printed test output
   gem 'turn', :require => false
 end
+
+gem "schema_plus", :git => 'git://github.com/DohMoose/schema_plus.git' 

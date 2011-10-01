@@ -1,10 +1,12 @@
 class User < ActiveRecord::Base
   has_many :lols
   has_many :links
+  
+  validates :shackname, uniqueness: { case_sensitive: false }
 
   
   def self.get(shackname)
-    find_or_create_by_shackname(shackname)
+    User.where("shackname ilike ?", shackname).first || User.create!(shackname:shackname)
   end
 
 
