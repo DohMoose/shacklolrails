@@ -1,11 +1,11 @@
 class LolsController < InheritedResources::Base
+  include HerokuCache
   respond_to :json
   actions :create
   before_filter :ensure_scope
-  before_filter :cache_output, only: :count
+
+  heroku_caches_actions only: :count
   
-
-
   has_scope :article_id
   has_scope :chatty_id
 
@@ -26,14 +26,9 @@ class LolsController < InheritedResources::Base
   end
 
 private
-  def cache_output
-    response.headers['Cache-Control'] = 'public, max-age=60'
-  end
-
   def ensure_scope
     if request.query_string.blank? 
       params[:article_id] = 17 
     end
   end
-     
 end

@@ -11,7 +11,7 @@ class Link < ActiveRecord::Base
       where("links.date > ? and links.date <= ?", timezone_date, timezone_date+1.day)
   }
 
- scope :tag,
+  scope :tag,
     lambda { |tagname|
       joins(:analysis).
       where("lol_type_id = ?", LolType.get(tagname))
@@ -23,13 +23,14 @@ class Link < ActiveRecord::Base
   def self.get(post_id, moderation=nil)
     link = where(post_id: post_id).first
 
+    # update moderation if its changed
     if link
-      link.moderation = moderation
-      link.save
+      link.update_attribute(moderation, moderation)
     else
       begin
         original_post, comment, article_id = ShackApi.get_comment(post_id)
       rescue
+        # complete failure, nuked
         link = Link.create!(
             post_id: post_id, 
             article_id: 0,
@@ -49,6 +50,7 @@ class Link < ActiveRecord::Base
             date: comment["date"],
             user: User.get(comment["author"]))
       rescue 
+        # something busted, assumed nuked
         link = Link.create!(
             post_id: post_id, 
             article_id: article_id,

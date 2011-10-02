@@ -7,6 +7,7 @@ class Lol < ActiveRecord::Base
   belongs_to :link
 
 
+  # allow of easy creation, we transpose these attributes before saving
   attr_accessor :who #shacker
   attr_accessor :what #post_id
   attr_accessor :tag #lol_type

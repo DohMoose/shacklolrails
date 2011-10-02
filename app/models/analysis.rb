@@ -3,6 +3,8 @@ class Analysis < ActiveRecord::Base
   belongs_to :link
   belongs_to :lol_type
 
+
+  # date range, usually used for getting the last 18 hours for latestchatty
   scope :date, 
     lambda { |day|
       timezone_date = DateTime.parse(day).in_time_zone
@@ -23,12 +25,14 @@ class Analysis < ActiveRecord::Base
       where("lols.user_id = ?", User.get(shackname))
   }
 
+
   scope :tag,
     lambda { |tagname|
       joined.
       where(lol_type_id: LolType.get(tagname))
   }
 
+  # when the drop down is changed
   scope :list_order,
     lambda { |type|
       order_statement = (type == 'lols') ? "total desc" : "links.date desc"
@@ -66,9 +70,13 @@ class Analysis < ActiveRecord::Base
       includes(:link).
       joins(:lol_type).
       includes(:lol_type)
-  
 
 
+  # this takes the results that are in the format
+  # {{post_id, original_post_id, lol_type_id}: {lol_count},{post_id, original_post_id, lol_type_id}: {lol_count}, ...}
+  # to
+  # {{original_post_id}: {{post_id, lol_type_name}: lol_count, {post_id,
+  # lol_type_name}: lol_count},...}
   def self.format_lol_counts(lol_counts)
     lol_counts.inject({}) do |h,v| 
       original_post_id = v[0][0]
@@ -83,6 +91,7 @@ class Analysis < ActiveRecord::Base
     end
   end
 
+  # updates or creates an analysis for a newly created lol
   def self.for_single_lol(lol)
     similar = lol.similar.to_a
     analysis = Analysis.find_or_initialize_by_link_id_and_lol_type_id(
